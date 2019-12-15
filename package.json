@@ -1,0 +1,15 @@
+{
+  "name": "kata-collection-js",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/KatasFloki/kata-collection-js.git",
+  "author": "Alejandro Dietta <alejandro.dietta@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
+}
