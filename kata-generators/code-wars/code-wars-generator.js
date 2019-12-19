@@ -1,29 +1,26 @@
 const fs = require('fs');
 const puppeteer = require('puppeteer');
 
-const BASE_URL = 'https://www.codewars.com/kata/'
+const BASE_URL = 'https://www.codewars.com/kata/';
 
-const kataInformationParser = ({ id, title, description, code }) => {
+const kataInformationParser = ({ id, title, parsedDescription, code }) => {
   return `
 /*
 Kata Id: ${id}
 
 Title:
-${title}
+  ${title}
 
 Intructions:
-${description}
+  ${parsedDescription}
 
 Link: ${BASE_URL}${id}
 
 Solution
-${code}
+  ${code}
 */
 `
 }
-
-
-
 
 async function run() {
   const browser = await puppeteer.launch();
@@ -34,11 +31,24 @@ async function run() {
 
   let username = await page.evaluate(() => {
     const $ = window.$;
-    const kyu = $('.inner-small-hex.is-extra-wide span').eq(2).text().split(" ")[0]
+    const kyu = $('.inner-small-hex.is-extra-wide span').eq(2).text();
     const title = $('h4.mbs.is-white-text').eq(0).text();
     const description = $('#description').text();
     
-    return { kyu, title, description }
+    const parsedKyu = kyu.split(" ")[0];
+
+    const parsedDescription = description.split('\n').map((e,i) => {
+      let characterCount = 0;
+      return e.split('').map((e,i) => {
+        if(characterCount++ >= 100 && e == ' ') {
+          characterCount = 0;
+          return '\n\t'
+        } 
+        return e;
+      }).join('')
+    }).join('\n\t')
+
+    return { parsedKyu, title, parsedDescription }
   }) 
   
   console.log(username)
