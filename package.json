@@ -7,7 +7,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "generator-codewars": "node kata-generators/code-wars/code-wars-generator.js"
   },
   "devDependencies": {
     "jest": "^24.9.0"
