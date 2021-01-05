@@ -14,7 +14,7 @@
     "jest": "^26.4.2"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.3",
     "puppeteer": "^2.0.0"
   }
